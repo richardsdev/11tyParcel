@@ -1,0 +1,37 @@
+{
+  "name": "11typarcel",
+  "version": "1.0.0",
+  "description": "Starter Template for 11ty, 11ty Image and Parcel with SASS, CUBE CSS Methodology",
+  "scripts": {
+    "dev": "concurrently -k 'npm:11ty-watch' 'npm:parcel-watch' 'npm:start-server'",
+    "clean": "npm run clean-site -s && npm run clean-bundle -s",
+    "build": "npm run clean -s && npm run build-11ty -s && npm run build-parcel -s",
+    "parcel-watch": "parcel watch site/index.html",
+    "11ty-watch": "eleventy --watch",
+    "build-11ty": "eleventy",
+    "build-parcel": "parcel site/index.html",
+    "start-server": "browser-sync bundle -w",
+    "clean-bundle": "npx rimraf bundle/*",
+    "clean-site": "npx rimraf site/*"
+  },
+  "targets": {
+    "default": {
+      "distDir": "./bundle"
+    }
+  },
+  "author": "Richard Schuitema",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@parcel/transformer-sass": "^2.0.0",
+    "browser-sync": "^2.27.7",
+    "concurrently": "^6.3.0",
+    "cross-env": "^7.0.3",
+    "parcel": "^2.0.0",
+    "recursive-fs": "^2.1.0"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "not IE 11"
+  ]
+}
