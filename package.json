@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "description": "Starter Template for 11ty, 11ty Image and Parcel with SASS, CUBE CSS Methodology",
   "scripts": {
-    "dev": "concurrently -k 'npm:11ty-watch' 'npm:parcel-watch' 'npm:start-server'",
-    "clean": "npm run clean-site -s && npm run clean-bundle -s",
-    "build": "npm run clean -s && npm run build-11ty -s && npm run build-parcel -s",
-    "parcel-watch": "parcel watch site/index.html",
+    "dev": "run-p 11ty-watch parcel-watch start-server",
+    "clean": "run-s clean-site clean-bundle",
+    "build": "run-s clean build-11ty build-parcel",
+    "parcel-watch": "wait-on site/index.html && parcel watch site/index.html",
     "11ty-watch": "eleventy --watch",
     "build-11ty": "eleventy",
-    "build-parcel": "parcel site/index.html",
-    "start-server": "browser-sync bundle -w",
-    "clean-bundle": "npx rimraf bundle/*",
-    "clean-site": "npx rimraf site/*"
+    "build-parcel": "parcel site/index.html --dist-dir bundle",
+    "start-server": "wait-on bundle/index.html && browser-sync bundle -w",
+    "clean-bundle": "npx rimraf bundle",
+    "clean-site": "npx rimraf site*",
+    "clean-parcel-cache": "npx rimraf .parcel-cache*"
   },
   "targets": {
     "default": {
@@ -28,7 +29,7 @@
     "concurrently": "^6.3.0",
     "cross-env": "^7.0.3",
     "parcel": "^2.0.0",
-    "recursive-fs": "^2.1.0"
+    "wait-on": "^6.0.0"
   },
   "browserslist": [
     "> 0.5%",

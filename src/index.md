@@ -5,4 +5,4 @@ pageTitle: "11tyP"
 
 ## Test
 
-Still ironing out the kinks, but it works kinda...
+Kinks ironed out for the npm scripts
