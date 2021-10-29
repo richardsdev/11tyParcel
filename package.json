@@ -9,7 +9,7 @@
     "parcel-watch": "wait-on site/index.html && parcel watch site/index.html",
     "11ty-watch": "eleventy --watch",
     "build-11ty": "eleventy",
-    "build-parcel": "parcel build site/index.html --dist-dir bundle",
+    "build-parcel": "parcel build site/index.html --dist-dir bundle --no-source-maps",
     "start-server": "wait-on bundle/index.html && browser-sync bundle -w",
     "clean-bundle": "npx rimraf bundle",
     "clean-site": "npx rimraf site*",
